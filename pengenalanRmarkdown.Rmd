@@ -51,13 +51,7 @@ File R markdown minimal yang dapat dieksekusi telah disediakan Rstudio.
 
 ![image](rmarkdownDiRstudio.PNG)
 
----
-
-# Gimana caranya?
-
-Dengan pengenalan dan *cheatsheet* yang juga telah disediakan Rstudio, kita bisa mengatur Rmarkdown sesuai keperluan kita.
-
-
+Atau bisa pakai template latihan yang dapat diakses di [sini](https://github.com/bogoRladies/first-meetup/blob/master/bogoRladies_latihan_Rmarkdown.Rmd).
 ---
 
 # Anatomi Rmarkdown
@@ -99,6 +93,13 @@ ggplot(mtcars) +
 ````
 ````
 
+Opsi pengaturan tampilan blok kode:
+
+`message = FALSE` untuk menekan pesan dari R ketika dokumen dicompile
+
+`echo = TRUE` untuk hanya menampilkan hasil kode, tanpa kodenya
+
+
 ---
 
 # Memasukan kode R dalam laporan
@@ -134,22 +135,15 @@ Kendala:
 1. Tidak boleh ada spasi setelah `$` pembuka atau sebelum `$` penutup.
 
 ---
+# Merender laporan
 
-# Alternatif pengaturan kode
+Untuk membuat laporan dalam format .docx, sila tekan tombol `Knit` di pojok kiri script.
 
-`message = FALSE` untuk menekan pesan dari R ketika dokumen dicompile
+Laporan dapat dibuat dalam berbagai format yang didukung package `knitr`, paling cepat html.
 
-`include = TRUE` untuk tidak menampilkan kode, namun hasilnya
-
-`echo = TRUE` untuk hanya menampilkan hasil kode, tanpa kodenya
-
-`eval = FALSE` agar kode tidak dieksekusi 
-
-
-Kalau lupa, coba-coba saja semua alternatif dalam cheatsheet!
+![image](PilihanKnit.PNG)
 
 ---
-
 # Sumber belajar Rmarkdown
 
 Lebih enak mulai dari pengenalan Rmarkdown yang dibuat Rstudio di sini: https://rmarkdown.rstudio.com/articles_intro.html
@@ -160,6 +154,7 @@ Lalu bolak-balik buka
 
 2. [buku panduan Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
 
+3. Google (Stack Overflow, GitHub Issues, etc.)
 
 ---
 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Membuat Laporan yang Dapat Diulang dengan Rmarkdown</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sabhrina Gita Aninta" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Membuat Laporan yang Dapat Diulang dengan Rmarkdown
+### Sabhrina Gita Aninta
+### 2019/05/04 (updated: 2019-05-05)
+
+---
+
+
+# Apa itu Rmarkdown?
+
+Rmarkdown adalah sebuah ekstensi Markdown untuk R.
+
+Sekalinya bisa Rmarkdown, kamu bisa bikin ini semua di R:
+- Laporan docx
+
+--
+
+- Laporan pdf&lt;sup&gt;*&lt;/sup&gt;
+
+--
+
+- Website statis
+
+--
+
+- Presentasi
+
+--
+
+- Buku
+
+--
+
+- [dan masih banyak lagi!](https://rmarkdown.rstudio.com/gallery.html)
+
+.footnote[
+[*] Ini butuh TeX dan agak bikin frustasi kalo pake Windows
+]
+
+---
+# Gimana caranya?
+
+File R markdown minimal yang dapat dieksekusi telah disediakan Rstudio.
+
+![image](rmarkdownDiRstudio.PNG)
+
+Atau bisa pakai template latihan yang dapat diakses di [sini](https://github.com/bogoRladies/first-meetup/blob/master/bogoRladies_latihan_Rmarkdown.Rmd).
+---
+
+# Anatomi Rmarkdown
+
+Satu file Rmarkdown (.Rmd) terdiri dari dua bagian: metadata (YAML) dan badan dokumen (R dan markdown)
+
+```yaml
+---
+title: "Laporan Data "
+author: "Sabhrina G. Aninta"
+date: "26 April 2017"
+mainfont: Calibri Light
+output:
+  html_document: default
+---
+
+# Edgar Anderson's Iris Data
+
+#### Description
+This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are *Iris setosa*, *versicolor*, and *virginica*.
+```
+
+---
+
+# Memasukan kode R dalam laporan
+
+Kode dapat dimasukkan ke dalam laporan dengan mengawali dan mengakhiri kode menggunakan tanda '`' sebanyak tiga kali.
+
+Bagaimana kode ingin ditampilkan dapat diatur di dalam `{}`, setelah `r`.
+
+````markdown
+```{r contoh,  echo=FALSE, message=FALSE, fig.height=4}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   
+  geom_smooth()    
+```
+````
+````
+
+Opsi pengaturan tampilan blok kode:
+
+`message = FALSE` untuk menekan pesan dari R ketika dokumen dicompile
+
+`echo = TRUE` untuk hanya menampilkan hasil kode, tanpa kodenya
+
+
+---
+
+# Memasukan kode R dalam laporan
+
+![](pengenalanRmarkdown_files/figure-html/contohPlot-1.png)&lt;!-- --&gt;
+
+
+---
+
+
+# Menulis persamaan
+
+Kita dapat menulis silmbol matematis dalam tanda `$`, contoh: &amp;#36;\alpha+\beta &amp;#36; menghasilkan `\(\alpha+\beta\)`. 
+
+Untuk menampilkan persamaan dalam baris tersendiri di luar kalimat, dapat menggunakan tanda dolar ganda:
+
+```
+`$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$`
+```
+
+`$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$`
+
+Kendala:
+
+1. Kode harus ada dalam satu baris, kecuali menggunakan tanda dolar ganda (`$$`);
+
+1. Tidak boleh ada spasi setelah `$` pembuka atau sebelum `$` penutup.
+
+---
+# Merender laporan
+
+Untuk membuat laporan dalam format .docx, sila tekan tombol `Knit` di pojok kiri script.
+
+Laporan dapat dibuat dalam berbagai format yang didukung package `knitr`, paling cepat html.
+
+![image](PilihanKnit.PNG)
+
+---
+# Sumber belajar Rmarkdown
+
+Lebih enak mulai dari pengenalan Rmarkdown yang dibuat Rstudio di sini: https://rmarkdown.rstudio.com/articles_intro.html
+
+Lalu bolak-balik buka
+
+1. cheatsheet dari [Rstudio](https://www.rstudio.com/resources/cheatsheets/)
+
+2. [buku panduan Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
+
+3. Google (Stack Overflow, GitHub Issues, etc.)
+
+---
+
+class: center, middle
+
+# Langsung praktik kuy!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
